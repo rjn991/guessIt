@@ -72,7 +72,7 @@ const GetPlaylist = (props) => {
 
   const startGame = () => {
     if(quesCount>0 && quesCount<=maxQuesCount) {
-        navigate("/question", { state: {quesCount,quesArray} });
+        navigate("/question", { state: {quesCount,quesArray,currentCount:0} });
     }
   }
 
