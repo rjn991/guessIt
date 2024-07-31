@@ -1,8 +1,9 @@
-import { useLocation } from "react-router-dom";
+import {useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
 import YouTube from "react-youtube";
 const Question = () => {
   let location = useLocation();
+  let navigate = useNavigate();
   const [quesArray, setQuesArray] = useState(location.state.quesArray);
   const [quesCount, setQuesCount] = useState(location.state.quesCount);
   const [currentCount, setCurrentCount] = useState(location.state.currentCount);
@@ -13,6 +14,7 @@ const Question = () => {
   // console.log(quesArray);
   // console.log(quesCount)
   // console.log(currentCount)
+  // console.log(score)
   const onReady = (event) => {
     setPlayer(event.target);
     setReady(true);
@@ -47,11 +49,13 @@ const Question = () => {
   };
 
   const toValidate = (selectedId) => {
-    if (selectedId == quesArray[currentCount].id) {
-      console.log("correct");
-    } else {
-      console.log("wrong");
-    }
+    // if (selectedId == quesArray[currentCount].id) {
+    //   console.log("correct");
+    // } else {
+    //   console.log("wrong");
+    // }
+
+    navigate("/result", { state: {quesCount,quesArray,currentCount,selectedId,score}});
   };
   return (
     <div>

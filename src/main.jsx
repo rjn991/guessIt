@@ -4,8 +4,8 @@ import App from "./App.jsx";
 import Question from "./Question/Question.jsx";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Playback from "./Playback/Playback.jsx";
-
+import Result from "./Result/Result.jsx";
+import Finish from "./Finish/Finish.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -16,9 +16,13 @@ const router = createBrowserRouter([
     element: <Question></Question>,
   },
   {
-    path: "/p",
-    element: <Playback></Playback>,
+    path:"/result",
+    element:<Result></Result>
   },
+  {
+    path:"/finish",
+    element:<Finish></Finish>
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
