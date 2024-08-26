@@ -1,0 +1,24 @@
+.headerWrapper {
+    padding: 8px 10px;
+    background-color: #47026C;
+    display: flex;
+    align-items: center;
+    justify-content: space-between
+}
+.logo img {
+    width: 120px;
+}
+.logo {
+    margin-left: 30px;
+}
+.links {
+    display: flex;
+
+}
+.links a {
+    text-decoration: none;
+    color: white;
+    display: block;
+    margin-right: 60px;
+    width: fit-content;
+}

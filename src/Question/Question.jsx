@@ -1,6 +1,7 @@
 import {useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
 import YouTube from "react-youtube";
+import Header from '/src/Header/Header'
 const Question = () => {
   let location = useLocation();
   let navigate = useNavigate();
@@ -10,6 +11,7 @@ const Question = () => {
   const [score, setScore] = useState(location.state.score);
   const [player, setPlayer] = useState();
   const [isReady, setReady] = useState(false);
+  const [dance,setDance] = useState(false)
   let interval;
   // console.log(quesArray);
   // console.log(quesCount)
@@ -21,6 +23,7 @@ const Question = () => {
   };
   const toggle = () => {
     if (player.getPlayerState() != 1) {
+      setDance(true)
       let mid = Math.floor(player.getDuration() / 2);
       player.unMute();
       player.setVolume(100);
@@ -35,6 +38,7 @@ const Question = () => {
         }
       }, 1000);
     } else {
+      setDance(false)
       player.pauseVideo();
       clearInterval(interval);
     }
@@ -59,6 +63,7 @@ const Question = () => {
   };
   return (
     <div>
+      <Header></Header>
       <YouTube
         videoId={quesArray[currentCount].id}
         opts={opts}
@@ -87,6 +92,11 @@ const Question = () => {
             </div>
           );
         })()}
+        {
+          dance &&
+          <img src="/src/assets/dance.gif"></img>
+        }
+        
     </div>
   );
 };

@@ -1,5 +1,7 @@
 import axios from "axios";
+import Header from "./Header/Header";
 import GetPlaylist from "./GetPlaylist/GetPlaylist";
+import Footer from './Footer/Footer'
 import { useEffect, useState } from "react";
 
 function App() {
@@ -35,6 +37,7 @@ function App() {
 
   return (
     <>
+      <Header></Header>
       <input
         type="textbox"
         onChange={(e) => {
@@ -49,6 +52,7 @@ function App() {
         (() => {
           return <GetPlaylist data={data} item={item_array}></GetPlaylist>;
         })()}
+      <Footer></Footer>
     </>
   );
 }
