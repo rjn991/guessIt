@@ -1,4 +1,5 @@
 import classes from "./Header.module.css";
+import logo from '../assets/logo.svg'
 import { NavLink } from "react-router-dom";
 
 const Header = () => {
@@ -12,7 +13,7 @@ const Header = () => {
               isPending ? "pending" : isActive ? "active" : ""
             }
           >
-            <img src="/src/assets/logo.svg" alt="logo"></img>
+            <img src={logo} alt="logo"></img>
           </NavLink>
         </div>
         <div className={classes.links}>
