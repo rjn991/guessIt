@@ -3,6 +3,7 @@ import Header from "./Header/Header";
 import GetPlaylist from "./GetPlaylist/GetPlaylist";
 import Footer from './Footer/Footer'
 import { useEffect, useState } from "react";
+import classes from './App.module.css'
 
 function App() {
   const api = import.meta.env.VITE_YT_KEY;
@@ -36,10 +37,13 @@ function App() {
   };
 
   return (
-    <>
+    <div className={classes.appwrapper}>
       <Header></Header>
-      <input
+      <div className={classes.inputWrapper}>  
+      <p>Paste any youtube playlist URL</p>
+      <input className={classes.linkarea}
         type="textbox"
+        
         onChange={(e) => {
           setAnswer(e.target.value);
         }}
@@ -52,8 +56,9 @@ function App() {
         (() => {
           return <GetPlaylist data={data} item={item_array}></GetPlaylist>;
         })()}
+      </div>
       <Footer></Footer>
-    </>
+    </div>
   );
 }
 
