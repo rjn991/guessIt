@@ -1,16 +1,16 @@
 import axios from "axios";
 import Header from "./Header/Header";
 import GetPlaylist from "./GetPlaylist/GetPlaylist";
-import Footer from './Footer/Footer'
+import Footer from "./Footer/Footer";
 import { useEffect, useState } from "react";
-import classes from './App.module.css'
+import classes from "./App.module.css";
 
 function App() {
   const api = import.meta.env.VITE_YT_KEY;
   const [answer, setAnswer] = useState();
   const [data, setData] = useState();
   const [item_array, setItem_array] = useState();
-
+  const [div1status, setDiv1Status] = useState(true);
   const getQueryParams = (url) => {
     let params = {};
     let parser = new URL(url);
@@ -31,6 +31,7 @@ function App() {
       );
       setData(response.data);
       setItem_array(response.data.items);
+      setDiv1Status(false);
     } catch (err) {
       console.log(err);
     }
@@ -39,23 +40,36 @@ function App() {
   return (
     <div className={classes.appwrapper}>
       <Header></Header>
-      <div className={classes.inputWrapper}>  
-      <p>Paste any youtube playlist URL</p>
-      <input className={classes.linkarea}
-        type="textbox"
-        
-        onChange={(e) => {
-          setAnswer(e.target.value);
-        }}
-      ></input>
-      <br></br>
-      <br></br>
-      <input type="button" value="Enter" onClick={fetch_vid}></input>
-      <br></br>
-      {data &&
-        (() => {
-          return <GetPlaylist data={data} item={item_array}></GetPlaylist>;
-        })()}
+      <div className={classes.inputWrapper}>
+        {div1status &&
+          (() => {
+            return (
+              <div>
+                <p>Paste any youtube playlist URL</p>
+                <input
+                  className={classes.linkarea}
+                  type="textbox"
+                  onChange={(e) => {
+                    setAnswer(e.target.value);
+                  }}
+                ></input>
+                <br></br>
+                <br></br>
+                <input
+                  className={classes.nextButton}
+                  type="button"
+                  value="Next"
+                  onClick={fetch_vid}
+                ></input>
+                <br></br>
+              </div>
+            );
+          })()}
+
+        {data &&
+          (() => {
+            return <GetPlaylist data={data} item={item_array}></GetPlaylist>;
+          })()}
       </div>
       <Footer></Footer>
     </div>

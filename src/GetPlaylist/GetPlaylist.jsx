@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import classes from './GetPlaylist.module.css'
 const GetPlaylist = (props) => {
   const data = props.data;
   const item_array = props.item;
@@ -66,8 +66,8 @@ const GetPlaylist = (props) => {
     }
     setQuesArray(question_array);
     setMaxQuesCount(ques_count);
-    console.log(question_array);
-    console.log(ques_count);
+    // console.log(question_array);
+    // console.log(ques_count);
   };
 
   const startGame = () => {
@@ -84,11 +84,11 @@ const GetPlaylist = (props) => {
   
   return (
     <div>
-      <p>Max Number of questions is : {maxQuesCount}</p>
-      <p>Enter the number of questions(should be &lt;= {maxQuesCount}): </p>
-      <input type="number" onChange={(e)=> {setQuesCount(e.target.value)}}></input>
+      <p>Enter the number of questions (Must be &lt;= {maxQuesCount}): </p>
+      <br></br>
+      <input className={classes.numberArea} type="number" onChange={(e)=> {setQuesCount(e.target.value)}}></input>
       <br></br><br></br>
-      <input type="button" value="start" onClick={startGame}></input>
+      <input className={classes.startButton} type="button" value="start" onClick={startGame}></input>
       {/* {quesArray &&
         quesArray.map((q, pos) => {
           return (

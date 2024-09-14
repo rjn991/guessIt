@@ -1,0 +1,16 @@
+.questionWrapper {
+    background-color: #47026C;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.questionFlex {
+    margin: auto;
+    background-color: aqua;
+    width: 90vw;
+    display: flex;
+    align-items: center;
+}
+.divLeft button {
+    width:100px  
+}

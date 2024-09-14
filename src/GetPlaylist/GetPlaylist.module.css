@@ -1,30 +1,15 @@
-.appwrapper {
-    display: flex;
-    flex-direction: column;
-    background-color: #47026C ;
-    min-height: 100vh;
-}
-.inputWrapper {
-    margin:auto;
-    width: fit-content;
-    /* background-color: aqua; */
-    text-align: center;
-}
-.inputWrapper p {
-    color: #E4AFFF;
-}
-.linkarea {
+.numberArea {
     outline: none;
     border: 0px;
     border-bottom: 1px solid #E4AFFF;
     background-color: #47026C;
-    width: 300px;
+    width: 90px;
     padding: 10px;
     text-align: center;
     color: white;    
     text-align: start;
 }
-.nextButton {
+.startButton {
     padding: 6px 20px;
     border-radius: 10px;
     background-color: #F5CF05;
