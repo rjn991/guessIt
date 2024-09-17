@@ -49,6 +49,7 @@ function App() {
                 <input
                   className={classes.linkarea}
                   type="textbox"
+                  autoFocus
                   onChange={(e) => {
                     setAnswer(e.target.value);
                   }}

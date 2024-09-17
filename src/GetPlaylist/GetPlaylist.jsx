@@ -86,7 +86,7 @@ const GetPlaylist = (props) => {
     <div>
       <p>Enter the number of questions (Must be &lt;= {maxQuesCount}): </p>
       <br></br>
-      <input className={classes.numberArea} type="number" onChange={(e)=> {setQuesCount(e.target.value)}}></input>
+      <input className={classes.numberArea} type="number" autoFocus onChange={(e)=> {setQuesCount(e.target.value)}}></input>
       <br></br><br></br>
       <input className={classes.startButton} type="button" value="start" onClick={startGame}></input>
       {/* {quesArray &&

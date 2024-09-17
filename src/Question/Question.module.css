@@ -1,16 +1,45 @@
 .questionWrapper {
-    background-color: #47026C;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+  background-color: #47026c;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 .questionFlex {
-    margin: auto;
-    background-color: aqua;
-    width: 90vw;
-    display: flex;
-    align-items: center;
+  margin: auto;
+  /* background-color: aqua; */
+  width: 90vw;
+  display: flex;
+  gap: 40px;
+  align-items: center;
+}
+.divLeft {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}
+
+.divRight {
+  flex: 1;
 }
 .divLeft button {
-    width:100px  
+  width: 100px;
+}
+.aniBlob {
+  --time: 10s;
+  --amount: 5;
+  --fill: #e4afff;
+  width: 200px;
+}
+.blobContainer {
+  position: relative;
+}
+
+.playPng {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  height: 52px;
+  transform: translate(-50%, -50%);
 }
