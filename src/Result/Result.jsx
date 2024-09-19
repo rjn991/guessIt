@@ -1,8 +1,11 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
-import classes from "./Result.module.css"
-import Footer from "../Footer/Footer"
+import classes from "./Result.module.css";
+import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
+import HappyFace from "../assets/happy.svg";
+import SadFace from "../assets/sad.svg";
+
 const Result = () => {
   let location = useLocation();
   let navigate = useNavigate();
@@ -24,6 +27,35 @@ const Result = () => {
   const gotoFinish = (s) => {
     navigate("/finish", { state: { score: s } });
   };
+
+  const correctFace = () => {
+    return (
+      <div className={classes.blobContainer}>
+        <img src={HappyFace} className={classes.facePng} alt="happy"></img>
+        <div className={["tk-blob", classes.aniBlob].join(" ")}>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 428.4 394.6">
+            <path d="M369.4 109.2c43.2 55.3 71.5 121.4 53.4 167.3-18.2 45.8-82.8 71.4-140.5 91.7-57.8 20.4-108.7 35.4-152.9 20.3C85.1 373.4 47.6 328.3 23.2 267c-24.5-61.2-35.8-138.6-2.5-191.7C54.1 22.2 132-6.6 200 1.3c68 7.9 126.1 52.5 169.4 107.9z"></path>
+          </svg>
+        </div>
+        <br></br>
+      </div>
+    );
+  };
+
+  const wrongFace = () => {
+    return (
+      <div className={classes.blobContainer}>
+        <img src={SadFace} className={classes.facePng} alt="happy"></img>
+        <div className={["tk-blob", classes.aniBlob].join(" ")}>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 428.4 394.6">
+            <path d="M369.4 109.2c43.2 55.3 71.5 121.4 53.4 167.3-18.2 45.8-82.8 71.4-140.5 91.7-57.8 20.4-108.7 35.4-152.9 20.3C85.1 373.4 47.6 328.3 23.2 267c-24.5-61.2-35.8-138.6-2.5-191.7C54.1 22.2 132-6.6 200 1.3c68 7.9 126.1 52.5 169.4 107.9z"></path>
+          </svg>
+        </div>
+        <br></br>
+      </div>
+    );
+  };
+
   const result = () => {
     if (
       currentCount == quesCount - 1 &&
@@ -31,7 +63,8 @@ const Result = () => {
     ) {
       return (
         <div className={classes.results}>
-          <p>Correct!</p>
+          {correctFace()}
+          <p className={classes.heading}>Correct!</p>
           <p>You gained 10 points</p>
           <p>Your score is {score + 10}</p>
           <button
@@ -49,7 +82,8 @@ const Result = () => {
     ) {
       return (
         <div className={classes.results}>
-          <p>Wrong!</p>
+          {wrongFace()}
+          <p className={classes.heading}>Wrong!</p>
           <p>You gained 0 points</p>
           <p>Your score is {score}</p>
           <button
@@ -67,7 +101,8 @@ const Result = () => {
     ) {
       return (
         <div className={classes.results}>
-          <p>Correct!</p>
+          {correctFace()}
+          <p className={classes.heading}>Correct!</p>
           <p>You gained 10 points</p>
           <p>Your score is {score + 10}</p>
           <button
@@ -85,22 +120,8 @@ const Result = () => {
     ) {
       return (
         <div className={classes.results}>
-            <div className={classes.blobContainer}>
-                  {/* <img
-                    src={playPauseImg}
-                    className={classes.playPng}
-                    alt="play-pause"
-                  ></img> */}
-                  <div className={["tk-blob", classes.aniBlob].join(" ")}>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 440.7 428.7"
-                    >
-                      <path d="M410.6 78.8c36 52.5 36.1 126 19.2 194C412.9 340.7 379 403 330 421.9c-49 19-113.1-5.3-178.6-34C85.8 359.2 18.7 326.1 3.5 276.4-11.7 226.7 25 160.3 71.7 105.3 118.3 50.3 174.8 6.8 239 .7c64.1-6 135.7 25.5 171.6 78.1z"></path>
-                    </svg>
-                  </div>
-                </div>
-          <p>Wrong!</p>
+          {wrongFace()}
+          <p className={classes.heading}>Wrong!</p>
           <p>You gained 0 points</p>
           <p>Your score is {score}</p>
           <button

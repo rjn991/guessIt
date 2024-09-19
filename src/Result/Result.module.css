@@ -7,6 +7,39 @@
 .results {
     margin: auto;
     text-align: center;
-    background-color: aqua;
+    color: white;
+    /* background-color: aqua; */
 }
-
+.results p {
+    margin-bottom: 10px;
+}
+.results button {
+    margin-top: 10px;
+    padding: 6px 20px;
+    border-radius: 10px;
+    background-color: #F5CF05;
+    border: 0px;
+    font-size: 14px;
+    color:#47026C
+}
+.aniBlob {
+    --time: 10s;
+    --amount: 5;
+    --fill: #e4afff;
+    width: 180px;
+}
+.blobContainer {
+    position: relative;
+  }
+.facePng {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    height: 70px;
+    transform: translate(-50%, -50%);
+}
+.heading {
+    color: #e4afff;
+    font-size: 40px;
+}
