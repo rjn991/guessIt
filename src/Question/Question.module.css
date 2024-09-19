@@ -20,7 +20,7 @@
 }
 
 .divRight {
-  flex: 1;
+  flex: 2;
 }
 .divLeft button {
   width: 100px;
@@ -42,4 +42,21 @@
   left: 50%;
   height: 52px;
   transform: translate(-50%, -50%);
+}
+.options {
+  background-color: #F5CF05;
+  margin-bottom: 20px;
+  text-align: center;
+  color:#47026c;
+  padding: 20px 20px;
+  width:66%;
+  box-sizing: border-box;
+  border-radius: 20px;
+  cursor: pointer;
+
+}
+.options p {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }

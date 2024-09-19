@@ -5,7 +5,7 @@ import Header from "/src/Header/Header";
 import classes from "./Question.module.css";
 import Footer from "../Footer/Footer";
 import PlaySvg from "../assets/play.svg";
-import PauseSvg from "../assets/pause.svg"
+import PauseSvg from "../assets/pause.svg";
 const Question = () => {
   let location = useLocation();
   let navigate = useNavigate();
@@ -15,7 +15,7 @@ const Question = () => {
   const [score, setScore] = useState(location.state.score);
   const [player, setPlayer] = useState();
   const [isReady, setReady] = useState(false);
-  const [playPauseImg,setPlayPauseImg]=useState(PlaySvg)
+  const [playPauseImg, setPlayPauseImg] = useState(PlaySvg);
   let interval;
   // console.log(quesArray);
   // console.log(quesCount)
@@ -32,19 +32,19 @@ const Question = () => {
       player.setVolume(100);
       player.seekTo(mid - 5);
       player.playVideo();
-      setPlayPauseImg(PauseSvg)
+      setPlayPauseImg(PauseSvg);
       interval = setInterval(() => {
         // console.log("checking");
         if (player.getCurrentTime() > mid + 5) {
           //   console.log("done");
           player.pauseVideo();
-          setPlayPauseImg(PlaySvg)
+          setPlayPauseImg(PlaySvg);
           clearInterval(interval);
         }
       }, 1000);
     } else {
       player.pauseVideo();
-      setPlayPauseImg(PlaySvg)
+      setPlayPauseImg(PlaySvg);
       clearInterval(interval);
     }
   };
@@ -96,20 +96,19 @@ const Question = () => {
                     </svg>
                   </div>
                 </div>
-                {/* <button onClick={}>Play/Pause</button> */}
               </div>
 
               <div className={classes.divRight}>
                 {quesArray[currentCount].answers.map((data, id) => {
                   return (
-                    <div key={data.id}>
-                      <button
-                        onClick={() => {
-                          toValidate(data.id);
-                        }}
-                      >
-                        {data.title}
-                      </button>
+                    <div
+                      className={classes.options}
+                      key={data.id}
+                      onClick={() => {
+                        toValidate(data.id);
+                      }}
+                    >
+                    <p>{data.title}</p>
                     </div>
                   );
                 })}

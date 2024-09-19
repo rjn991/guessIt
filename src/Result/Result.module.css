@@ -1,0 +1,12 @@
+.resultWrapper {
+    background-color: #47026c;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.results {
+    margin: auto;
+    text-align: center;
+    background-color: aqua;
+}
+
