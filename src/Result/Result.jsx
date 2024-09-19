@@ -37,7 +37,6 @@ const Result = () => {
             <path d="M369.4 109.2c43.2 55.3 71.5 121.4 53.4 167.3-18.2 45.8-82.8 71.4-140.5 91.7-57.8 20.4-108.7 35.4-152.9 20.3C85.1 373.4 47.6 328.3 23.2 267c-24.5-61.2-35.8-138.6-2.5-191.7C54.1 22.2 132-6.6 200 1.3c68 7.9 126.1 52.5 169.4 107.9z"></path>
           </svg>
         </div>
-        <br></br>
       </div>
     );
   };
@@ -51,7 +50,6 @@ const Result = () => {
             <path d="M369.4 109.2c43.2 55.3 71.5 121.4 53.4 167.3-18.2 45.8-82.8 71.4-140.5 91.7-57.8 20.4-108.7 35.4-152.9 20.3C85.1 373.4 47.6 328.3 23.2 267c-24.5-61.2-35.8-138.6-2.5-191.7C54.1 22.2 132-6.6 200 1.3c68 7.9 126.1 52.5 169.4 107.9z"></path>
           </svg>
         </div>
-        <br></br>
       </div>
     );
   };
@@ -64,6 +62,7 @@ const Result = () => {
       return (
         <div className={classes.results}>
           {correctFace()}
+          <br></br>
           <p className={classes.heading}>Correct!</p>
           <p>You gained 10 points</p>
           <p>Your score is {score + 10}</p>
@@ -83,8 +82,9 @@ const Result = () => {
       return (
         <div className={classes.results}>
           {wrongFace()}
+          <br></br>
           <p className={classes.heading}>Wrong!</p>
-          <p>You gained 0 points</p>
+          <p>You gained nothing</p>
           <p>Your score is {score}</p>
           <button
             onClick={() => {
@@ -102,6 +102,7 @@ const Result = () => {
       return (
         <div className={classes.results}>
           {correctFace()}
+          <br></br>
           <p className={classes.heading}>Correct!</p>
           <p>You gained 10 points</p>
           <p>Your score is {score + 10}</p>
@@ -121,8 +122,9 @@ const Result = () => {
       return (
         <div className={classes.results}>
           {wrongFace()}
+          <br></br>
           <p className={classes.heading}>Wrong!</p>
-          <p>You gained 0 points</p>
+          <p>You gained nothing</p>
           <p>Your score is {score}</p>
           <button
             onClick={() => {

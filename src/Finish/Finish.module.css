@@ -1,19 +1,18 @@
-.resultWrapper {
+.finishWrapper {
     background-color: #47026c;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
-.results {
-    margin: auto;
+.congo {
+    margin:auto;
     text-align: center;
     color: white;
-    /* background-color: aqua; */
 }
-.results p {
+.congo p {
     margin-bottom: 10px;
 }
-.results button {
+.congo button {
     margin-top: 10px;
     padding: 6px 20px;
     border-radius: 10px;
@@ -22,6 +21,9 @@
     font-size: 14px;
     color:#47026C
 }
+.blobContainer {
+    position: relative;
+}
 .aniBlob {
     --time: 10s;
     --amount: 5;
@@ -29,18 +31,15 @@
     width: 180px;
     margin: auto;
 }
-.blobContainer {
-    position: relative;
-  }
-.facePng {
+.heading {
+    color: #e4afff;
+    font-size: 35px;
+}
+.starPng {
     position: absolute;
     z-index: 1;
     top: 50%;
     left: 50%;
     height: 70px;
     transform: translate(-50%, -50%);
-}
-.heading {
-    color: #e4afff;
-    font-size: 40px;
 }
