@@ -1,19 +1,27 @@
 .numberArea {
-    outline: none;
-    border: 0px;
-    border-bottom: 1px solid #E4AFFF;
-    background-color: #47026C;
-    width: 90px;
-    padding: 10px;
-    text-align: center;
-    color: #F5CF05;  
-    text-align: start;
+  outline: none;
+  border: 0px;
+  border-bottom: 1px solid #e4afff;
+  background-color: #47026c;
+  width: 90px;
+  padding: 10px;
+  text-align: center;
+  color: #f5cf05;
+  text-align: start;
 }
 .startButton {
-    padding: 6px 20px;
-    border-radius: 10px;
-    background-color: #F5CF05;
-    border: 0px;
-    font-size: 14px;
-    color:#47026C
+  padding: 6px 20px;
+  border-radius: 10px;
+  background-color: #f5cf05;
+  border: 0px;
+  font-size: 14px;
+  color: #47026c;
+}
+
+@media only screen and (max-width: 768px) {
+  .startButton {
+    margin-top: 20px;
+    font-size: 18px;
+    padding: 10px 20px;
+  }
 }

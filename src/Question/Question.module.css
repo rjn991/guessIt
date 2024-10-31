@@ -21,6 +21,9 @@
 
 .divRight {
   flex: 2;
+  overflow: hidden;
+  width: 100%;
+  /* background-color: red; */
 }
 .divLeft button {
   width: 100px;
@@ -49,7 +52,8 @@
   text-align: center;
   color:#47026c;
   padding: 20px 20px;
-  width:66%;
+  width:100%;
+  max-width: 700px;
   box-sizing: border-box;
   border-radius: 20px;
   cursor: pointer;
@@ -59,4 +63,18 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+
+
+@media only screen and (max-width: 768px) {
+  .questionFlex {
+    flex-direction: column;
+  }
+  .divLeft {
+    flex: 1;
+  }
+
+  .divRight {
+    flex: 1;
+  }
 }

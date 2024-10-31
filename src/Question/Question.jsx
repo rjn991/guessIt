@@ -108,7 +108,7 @@ const Question = () => {
                         toValidate(data.id);
                       }}
                     >
-                    <p>{data.title}</p>
+                      <p>{data.title}</p>
                     </div>
                   );
                 })}

@@ -11,6 +11,7 @@
     text-align: center;
 }
 .inputWrapper p {
+    width: 90vw;
     color: #E4AFFF;
 }
 .linkarea {
@@ -31,4 +32,12 @@
     border: 0px;
     font-size: 14px;
     color:#47026C
+}
+
+@media only screen and (max-width: 768px) { 
+    .nextButton {
+        margin-top: 20px;
+        font-size: 18px;
+        padding: 10px 20px;
+    }
 }
