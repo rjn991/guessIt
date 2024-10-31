@@ -22,3 +22,52 @@
     margin-right: 60px;
     width: fit-content;
 }
+.hamburger {
+    display: none;
+}
+.dropdown {
+    display: none;
+}
+
+@media only screen and (max-width: 768px) {
+    .headerWrapper {
+        background-color: unset;
+    }
+    .mainNavWrapper {
+        position: relative;
+    }
+    .links {
+        display: none;
+    }
+    .logo {
+        margin-left: 10px;
+    }
+    .hamburger {
+        display: block;
+    }
+    .hamburger img {
+        display: block;
+        width: 50px;
+    }
+    .dropdownTop {
+        background-color: #6B03A4;
+    }
+    .dropdown {
+        z-index: 2;
+        display: block;
+        position: absolute;
+    }
+    .dropdown p {
+        font-size: 18px;
+        margin-left:30px;
+        padding-top: 20px;
+    }
+    .dropdown a {
+        text-decoration:none;
+        color: #E4AFFF;
+    }
+    .dropWave {
+        display: block;
+        width: 100vw;
+    }
+}
