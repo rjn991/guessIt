@@ -5,11 +5,21 @@ import Footer from "./Footer/Footer";
 import { useEffect, useState } from "react";
 import classes from "./App.module.css";
 
+import { useSelector, useDispatch } from 'react-redux'
+import { setPlaylistData,setPlaylistItem } from './features/playlistSlice'
+
+
+
 function App() {
   const api = import.meta.env.VITE_YT_KEY;
   const [answer, setAnswer] = useState();
-  const [data, setData] = useState();
-  const [item_array, setItem_array] = useState();
+  
+  const data = useSelector((state) => state.playlist.playlistData)
+  const item_array = useSelector((state) => state.playlist.playlistItem)
+  const dispatch = useDispatch()
+
+
+
   const [div1status, setDiv1Status] = useState(true);
   const getQueryParams = (url) => {
     let params = {};
@@ -29,13 +39,20 @@ function App() {
       const response = await axios.get(
         `https://www.googleapis.com/youtube/v3/playlistItems?playlistId=${param.list}&key=${api}&part=snippet&maxResults=50`
       );
-      setData(response.data);
-      setItem_array(response.data.items);
+      dispatch(setPlaylistData(response.data))
+      dispatch(setPlaylistItem(response.data.items));
       setDiv1Status(false);
     } catch (err) {
       console.log(err);
     }
   };
+
+  useEffect(()=>{
+    console.log(data)
+    console.log(item_array)
+  },[data,item_array])
+
+
 
   return (
     <div className={classes.appwrapper}>
@@ -69,7 +86,7 @@ function App() {
 
         {data &&
           (() => {
-            return <GetPlaylist data={data} item={item_array}></GetPlaylist>;
+            return <GetPlaylist></GetPlaylist>;
           })()}
       </div>
       <Footer></Footer>

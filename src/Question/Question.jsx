@@ -6,13 +6,22 @@ import classes from "./Question.module.css";
 import Footer from "../Footer/Footer";
 import PlaySvg from "../assets/play.svg";
 import PauseSvg from "../assets/pause.svg";
+import { useSelector,useDispatch } from "react-redux";
+import {setQuesArray,setQuesCount,setMaxQues,setCurrentCount,incScore} from '../features/playlistSlice'
+
+
+
+
+
+
+
 const Question = () => {
   let location = useLocation();
   let navigate = useNavigate();
-  const [quesArray, setQuesArray] = useState(location.state.quesArray);
-  const [quesCount, setQuesCount] = useState(location.state.quesCount);
-  const [currentCount, setCurrentCount] = useState(location.state.currentCount);
-  const [score, setScore] = useState(location.state.score);
+  const quesArray = useSelector((state) => state.playlist.quesArray)
+  const quesCount =  useSelector((state)=>state.playlist.quesCount)
+  const currentCount = useSelector((state)=>state.playlist.currentCount)
+  const score = useSelector((state)=>state.playlist.score) 
   const [player, setPlayer] = useState();
   const [isReady, setReady] = useState(false);
   const [playPauseImg, setPlayPauseImg] = useState(PlaySvg);
@@ -65,7 +74,7 @@ const Question = () => {
     // }
 
     navigate("/result", {
-      state: { quesCount, quesArray, currentCount, selectedId, score },
+      state: { selectedId },
     });
   };
   return (

@@ -1,12 +1,16 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import classes from './GetPlaylist.module.css'
-const GetPlaylist = (props) => {
-  const data = props.data;
-  const item_array = props.item;
-  const [quesArray, setQuesArray] = useState();
-  const [maxQuesCount,setMaxQuesCount] = useState();
-  const [quesCount,setQuesCount] = useState()
+
+import { useSelector,useDispatch} from 'react-redux'
+import {setQuesArray,setQuesCount,setMaxQues} from '../features/playlistSlice'
+const GetPlaylist = () => {
+
+  const item_array = useSelector((state) => state.playlist.playlistItem)
+  const dispatch = useDispatch()
+  const quesArray = useSelector((state) => state.playlist.quesArray)
+  const maxQuesCount = useSelector((state) => state.playlist.maxQues)
+  const quesCount =  useSelector((state)=>state.playlist.quesCount)
   const navigate = useNavigate();
   
   function generateRandomNumbers(arr_len) {
@@ -64,15 +68,15 @@ const GetPlaylist = (props) => {
       ques_count+=1
       
     }
-    setQuesArray(question_array);
-    setMaxQuesCount(ques_count);
+    dispatch(setQuesArray(question_array));
+    dispatch(setMaxQues(ques_count));
     // console.log(question_array);
     // console.log(ques_count);
   };
 
   const startGame = () => {
     if(quesCount>0 && quesCount<=maxQuesCount) {
-        navigate("/question", { state: {quesCount,quesArray,currentCount:0,score:0} });
+        navigate("/question");
     }
   }
 
@@ -86,7 +90,7 @@ const GetPlaylist = (props) => {
     <div>
       <p>Enter the number of questions <br></br>(Maximum {maxQuesCount}): </p>
       <br></br>
-      <input className={classes.numberArea} type="number" autoFocus onChange={(e)=> {setQuesCount(e.target.value)}}></input>
+      <input className={classes.numberArea} type="number" autoFocus onChange={(e)=> {dispatch(setQuesCount(e.target.value))}}></input>
       <br></br><br></br>
       <input className={classes.startButton} type="button" value="Start" onClick={startGame}></input>
       {/* {quesArray &&

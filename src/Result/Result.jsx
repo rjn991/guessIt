@@ -6,26 +6,35 @@ import Header from "../Header/Header";
 import HappyFace from "../assets/happy.svg";
 import SadFace from "../assets/sad.svg";
 
+import {setQuesArray,setQuesCount,setMaxQues,setCurrentCount,incScore} from '../features/playlistSlice'
+import { useSelector,useDispatch } from "react-redux";
+
 const Result = () => {
   let location = useLocation();
   let navigate = useNavigate();
-  const [quesArray, setQuesArray] = useState(location.state.quesArray);
-  const [quesCount, setQuesCount] = useState(location.state.quesCount);
-  const [currentCount, setCurrentCount] = useState(location.state.currentCount);
-  const [score, setScore] = useState(location.state.score);
+  const dispatch = useDispatch();
+
+
+  const quesArray = useSelector((state) => state.playlist.quesArray)
+  const quesCount =  useSelector((state)=>state.playlist.quesCount)
+  const currentCount = useSelector((state)=>state.playlist.currentCount)
+  const score = useSelector((state)=>state.playlist.score) 
   const [selectedId, setSelectedId] = useState(location.state.selectedId);
+  const [scoreupdated,setScoreUpdated] = useState(false)
+
   console.log(quesArray);
   console.log(quesCount);
   console.log(currentCount);
   console.log(score);
   console.log(selectedId);
-  const gotoNext = (s) => {
-    navigate("/question", {
-      state: { quesCount, quesArray, currentCount: currentCount + 1, score: s },
-    });
+
+
+  const gotoNext = () => {
+    dispatch(setCurrentCount(currentCount+1))
+    navigate("/question");
   };
-  const gotoFinish = (s) => {
-    navigate("/finish", { state: { score: s } });
+  const gotoFinish = () => {
+    navigate("/finish");
   };
 
   const correctFace = () => {
@@ -59,16 +68,20 @@ const Result = () => {
       currentCount == quesCount - 1 &&
       quesArray[currentCount].id == selectedId
     ) {
+      if(!scoreupdated) {
+        dispatch(incScore())
+        setScoreUpdated(true)
+      }
       return (
         <div className={classes.results}>
           {correctFace()}
           <br></br>
           <p className={classes.heading}>Correct!</p>
           <p>You gained 10 points</p>
-          <p>Your score is {score + 10}</p>
+          <p>Your score is {score}</p>
           <button
             onClick={() => {
-              gotoFinish(score + 10);
+              gotoFinish();
             }}
           >
             Next
@@ -88,7 +101,7 @@ const Result = () => {
           <p>Your score is {score}</p>
           <button
             onClick={() => {
-              gotoFinish(score);
+              gotoFinish();
             }}
           >
             Next
@@ -99,16 +112,20 @@ const Result = () => {
       currentCount < quesCount - 1 &&
       quesArray[currentCount].id == selectedId
     ) {
+      if(!scoreupdated) {
+        dispatch(incScore())
+        setScoreUpdated(true)
+      }
       return (
         <div className={classes.results}>
           {correctFace()}
           <br></br>
           <p className={classes.heading}>Correct!</p>
           <p>You gained 10 points</p>
-          <p>Your score is {score + 10}</p>
+          <p>Your score is {score}</p>
           <button
             onClick={() => {
-              gotoNext(score + 10);
+              gotoNext();
             }}
           >
             Next
@@ -128,7 +145,7 @@ const Result = () => {
           <p>Your score is {score}</p>
           <button
             onClick={() => {
-              gotoNext(score);
+              gotoNext();
             }}
           >
             Next

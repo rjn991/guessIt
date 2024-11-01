@@ -2,9 +2,9 @@
   background-color: #E4AFFF;
   text-align: center;
   height: 50px;
-  width: 100vw;
+  width: 100%;
 }
 .svg {
   display: block;
-  width: 100vw;
+  width: 100%;
 }

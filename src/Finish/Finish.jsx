@@ -3,9 +3,11 @@ import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import classes from "./Finish.module.css";
 import star from '../assets/star.svg'
+import { useSelector } from "react-redux";
 const Finish = () => {
   let navigate = useNavigate();
   let location = useLocation();
+  const score = useSelector((state)=>state.playlist.score) 
 
   return (
     <div className={classes.finishWrapper}>
@@ -27,7 +29,7 @@ const Finish = () => {
         
         <p className={classes.heading}>Congratulations!</p>
         
-        <p>Your total score is {location.state.score}</p>
+        <p>Your total score is {score}</p>
         
         <button
           onClick={() => {
