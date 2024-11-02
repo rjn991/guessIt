@@ -6,7 +6,7 @@ const initialState = {
 
     quesArray:null,
     quesCount:null,
-    maxQues:10,
+    maxQues:0,
 
     currentCount:0,
     score:0
@@ -39,10 +39,21 @@ export const playlistSlice = createSlice({
       },
       incScore : (state) => {
         state.score += 10
+      },
+      resetData : (state) => {
+        state.playlistData = null
+        state.playlistItem=null
+    
+        state.quesArray=null
+        state.quesCount=null
+        state.maxQues=0
+    
+        state.currentCount=0
+        state.score=0
       }
     },
 })
 
-export const { setPlaylistData,setPlaylistItem,setQuesArray,setQuesCount,setMaxQues,setCurrentCount,incScore } = playlistSlice.actions
+export const { setPlaylistData,setPlaylistItem,setQuesArray,setQuesCount,setMaxQues,setCurrentCount,incScore,resetData } = playlistSlice.actions
 
 export default playlistSlice.reducer

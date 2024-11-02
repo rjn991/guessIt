@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import classes from "./App.module.css";
 
 import { useSelector, useDispatch } from 'react-redux'
-import { setPlaylistData,setPlaylistItem } from './features/playlistSlice'
+import { setPlaylistData,setPlaylistItem,resetData } from './features/playlistSlice'
 
 
 
@@ -47,12 +47,15 @@ function App() {
     }
   };
 
+  // useEffect(()=>{
+  //   console.log(data)
+  //   console.log(item_array)
+  // },[data,item_array])
+
+
   useEffect(()=>{
-    console.log(data)
-    console.log(item_array)
-  },[data,item_array])
-
-
+    dispatch(resetData())
+  },[])
 
   return (
     <div className={classes.appwrapper}>

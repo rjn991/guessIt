@@ -1,5 +1,5 @@
 import { useNavigate, useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import classes from "./Result.module.css";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
@@ -20,13 +20,12 @@ const Result = () => {
   const currentCount = useSelector((state)=>state.playlist.currentCount)
   const score = useSelector((state)=>state.playlist.score) 
   const [selectedId, setSelectedId] = useState(location.state.selectedId);
-  const [scoreupdated,setScoreUpdated] = useState(false)
-
-  console.log(quesArray);
-  console.log(quesCount);
-  console.log(currentCount);
-  console.log(score);
-  console.log(selectedId);
+  const [correct,setCorrect]=useState(false)
+  // console.log(quesArray);
+  // console.log(quesCount);
+  // console.log(currentCount);
+  // console.log(score);
+  // console.log(selectedId);
 
 
   const gotoNext = () => {
@@ -50,6 +49,16 @@ const Result = () => {
     );
   };
 
+  useEffect(()=>{
+    if(selectedId==quesArray[currentCount].id) {
+      dispatch(incScore())
+      setCorrect(true)
+    }
+    // console.log("I ran")
+    // console.log(selectedId==quesArray[currentCount].id)
+  },[selectedId])
+
+
   const wrongFace = () => {
     return (
       <div className={classes.blobContainer}>
@@ -66,12 +75,8 @@ const Result = () => {
   const result = () => {
     if (
       currentCount == quesCount - 1 &&
-      quesArray[currentCount].id == selectedId
+      correct
     ) {
-      if(!scoreupdated) {
-        dispatch(incScore())
-        setScoreUpdated(true)
-      }
       return (
         <div className={classes.results}>
           {correctFace()}
@@ -90,7 +95,7 @@ const Result = () => {
       );
     } else if (
       currentCount == quesCount - 1 &&
-      quesArray[currentCount].id != selectedId
+      !correct
     ) {
       return (
         <div className={classes.results}>
@@ -110,12 +115,8 @@ const Result = () => {
       );
     } else if (
       currentCount < quesCount - 1 &&
-      quesArray[currentCount].id == selectedId
+      correct
     ) {
-      if(!scoreupdated) {
-        dispatch(incScore())
-        setScoreUpdated(true)
-      }
       return (
         <div className={classes.results}>
           {correctFace()}
@@ -134,7 +135,7 @@ const Result = () => {
       );
     } else if (
       currentCount < quesCount - 1 &&
-      quesArray[currentCount].id != selectedId
+      !correct
     ) {
       return (
         <div className={classes.results}>
