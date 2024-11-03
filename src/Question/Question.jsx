@@ -6,6 +6,7 @@ import classes from "./Question.module.css";
 import Footer from "../Footer/Footer";
 import PlaySvg from "../assets/play.svg";
 import PauseSvg from "../assets/pause.svg";
+import Loader from "../loader/Loader";
 const Question = () => {
   let location = useLocation();
   let navigate = useNavigate();
@@ -76,6 +77,11 @@ const Question = () => {
         opts={opts}
         onReady={onReady}
       />
+      {!isReady && (
+        <div className={classes.loaderFlex}>
+          <Loader></Loader>
+        </div>
+      )}
       {isReady &&
         (() => {
           return (

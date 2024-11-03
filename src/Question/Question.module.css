@@ -4,6 +4,15 @@
   display: flex;
   flex-direction: column;
 }
+.loaderFlex{
+  margin: auto;
+  /* background-color: aqua; */
+  width: 90vw;
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  justify-content: center;
+}
 .questionFlex {
   margin: auto;
   /* background-color: aqua; */
