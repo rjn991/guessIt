@@ -1,5 +1,5 @@
 import { useNavigate, useLocation } from "react-router-dom";
-import { useState } from "react";
+import React, { useState, useRef } from "react";
 import YouTube from "react-youtube";
 import Header from "/src/Header/Header";
 import classes from "./Question.module.css";
@@ -17,7 +17,8 @@ const Question = () => {
   const [player, setPlayer] = useState();
   const [isReady, setReady] = useState(false);
   const [playPauseImg, setPlayPauseImg] = useState(PlaySvg);
-  let interval;
+  const intervalRef = useRef(null);
+  const [countdown,setCountdown] = useState(10) 
   // console.log(quesArray);
   // console.log(quesCount)
   // console.log(currentCount)
@@ -34,21 +35,32 @@ const Question = () => {
       player.seekTo(mid - 5);
       player.playVideo();
       setPlayPauseImg(PauseSvg);
-      interval = setInterval(() => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+      intervalRef.current = setInterval(() => {
         // console.log("checking");
-        if (player.getCurrentTime() > mid + 5) {
+        console.log ( Math.ceil((mid + 5)) - Math.ceil(player.getCurrentTime()) )
+        setCountdown(Math.ceil((mid + 5)) - Math.ceil(player.getCurrentTime()))
+        if (player.getCurrentTime() > mid + 4) {
           //   console.log("done");
           player.pauseVideo();
           setPlayPauseImg(PlaySvg);
-          clearInterval(interval);
+          clearInterval(intervalRef.current);
+          intervalRef.current = null;
         }
       }, 1000);
-    } else {
-      player.pauseVideo();
-      setPlayPauseImg(PlaySvg);
-      clearInterval(interval);
-    }
+    } 
+    // else {
+    //   player.pauseVideo();
+    //   setPlayPauseImg(PlaySvg);
+    //   clearInterval(intervalRef.current);
+    //   intervalRef.current = null;
+    // }
   };
+
+  //Clean up interval on component unmount
+  React.useEffect(() => {
+    return () => clearInterval(intervalRef.current);
+  }, []);
   const opts = {
     height: "0",
     width: "0",
@@ -85,6 +97,8 @@ const Question = () => {
       {isReady &&
         (() => {
           return (
+            <div className={classes.countdownFlex}>
+              <p>Time : {countdown}</p>
             <div className={classes.questionFlex}>
               <div className={classes.divLeft}>
                 <div className={classes.blobContainer} onClick={toggle}>
@@ -119,6 +133,7 @@ const Question = () => {
                   );
                 })}
               </div>
+            </div>
             </div>
           );
         })()}

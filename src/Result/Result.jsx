@@ -14,11 +14,11 @@ const Result = () => {
   const [currentCount, setCurrentCount] = useState(location.state.currentCount);
   const [score, setScore] = useState(location.state.score);
   const [selectedId, setSelectedId] = useState(location.state.selectedId);
-  console.log(quesArray);
-  console.log(quesCount);
-  console.log(currentCount);
-  console.log(score);
-  console.log(selectedId);
+  // console.log(quesArray);
+  // console.log(quesCount);
+  // console.log(currentCount);
+  // console.log(score);
+  // console.log(selectedId);
   const gotoNext = (s) => {
     navigate("/question", {
       state: { quesCount, quesArray, currentCount: currentCount + 1, score: s },

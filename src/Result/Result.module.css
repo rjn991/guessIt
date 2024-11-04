@@ -23,7 +23,7 @@
     color:#47026C
 }
 .aniBlob {
-    --time: 10s;
+    --time: 20s;
     --amount: 5;
     --fill: #e4afff;
     width: 180px;
