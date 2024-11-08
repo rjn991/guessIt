@@ -112,14 +112,6 @@ function App() {
             <input
               className={classes.countSelection}
               type="button"
-              value="1"
-              onClick={() => {
-                multiPlayerRedirector(1);
-              }}
-            ></input>
-            <input
-              className={classes.countSelection}
-              type="button"
               value="2"
               onClick={() => {
                 multiPlayerRedirector(2);

@@ -6,7 +6,8 @@ import star from '../assets/star.svg'
 const Finish = () => {
   let navigate = useNavigate();
   let location = useLocation();
-
+  let scoreArray = location.state.scoreArray
+  let multiplayer = location.state.multiplayer
   return (
     <div className={classes.finishWrapper}>
       <Header></Header>
@@ -25,9 +26,21 @@ const Finish = () => {
         </div>
         <br></br>
         
-        <p className={classes.heading}>Congratulations!</p>
-        
-        <p>Your total score is {location.state.score}</p>
+        <p className={classes.heading}>Game Over!</p>
+        {
+          multiplayer==0 ?
+          <p>Your total score is {location.state.score}</p>
+          :
+          <>
+          {
+            scoreArray.map((data,id)=>{
+              return(
+                <p>Player {id+1} score : {data}</p>
+              )
+            })
+          }
+          </>
+        }
         
         <button
           onClick={() => {

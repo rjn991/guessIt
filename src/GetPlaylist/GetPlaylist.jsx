@@ -71,8 +71,20 @@ const GetPlaylist = (props) => {
   };
 
   const startGame = () => {
-    if(quesCount>0 && quesCount<=maxQuesCount) {
-        navigate("/question", { state: {quesCount,quesArray,currentCount:0,score:0} });
+    if(quesCount>0 && quesCount<=maxQuesCount && multiplayer==0) {
+        navigate("/question", { state: {quesCount,quesArray,currentCount:0,score:0,multiplayer} });
+    }
+    else if(quesCount>0 && quesCount<=maxQuesCount*multiplayer && multiplayer!=0) {
+        console.log("jwlo")
+        var score_array = []
+        var player_array = []
+        for(var i=0;i<multiplayer;i++) {
+          score_array.push(0)
+          player_array.push(i)
+        }
+        console.log(score_array)
+        console.log(player_array)
+        navigate("/question", { state: {quesCount,quesArray,currentCount:0,scoreArray:score_array,playerArray:player_array,playerIndex:0,multiplayer} });
     }
   }
 

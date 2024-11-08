@@ -19,10 +19,19 @@ const Question = () => {
   const [playPauseImg, setPlayPauseImg] = useState(PlaySvg);
   const intervalRef = useRef(null);
   const [countdown,setCountdown] = useState(10) 
+
+  const [multiplayer,setMultiplayer] = useState(location.state.multiplayer)
+  const [scoreArray,setScoreArray] = useState(location.state.scoreArray)
+  const [playerArray,setPlayerArray] = useState(location.state.playerArray)
+  const [playerIndex,setPlayerIndex] = useState(location.state.playerIndex)
   // console.log(quesArray);
   // console.log(quesCount)
   // console.log(currentCount)
   // console.log(score)
+  // console.log(multiplayer)
+  // console.log(scoreArray)
+  // console.log(playerArray)
+  // console.log(playerIndex)
   const onReady = (event) => {
     setPlayer(event.target);
     setReady(true);
@@ -38,7 +47,7 @@ const Question = () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
       intervalRef.current = setInterval(() => {
         // console.log("checking");
-        console.log ( Math.ceil((mid + 5)) - Math.ceil(player.getCurrentTime()) )
+        // console.log ( Math.ceil((mid + 5)) - Math.ceil(player.getCurrentTime()) )
         setCountdown(Math.ceil((mid + 5)) - Math.ceil(player.getCurrentTime()))
         if (player.getCurrentTime() > mid + 4) {
           //   console.log("done");
@@ -78,7 +87,7 @@ const Question = () => {
     // }
 
     navigate("/result", {
-      state: { quesCount, quesArray, currentCount, selectedId, score },
+      state: { quesCount, quesArray, currentCount, selectedId, score,multiplayer,scoreArray,playerArray,playerIndex },
     });
   };
   return (
@@ -98,6 +107,7 @@ const Question = () => {
         (() => {
           return (
             <div className={classes.countdownFlex}>
+              {multiplayer!=0 && <p>Player {playerIndex+1}</p>}
               <p>Time : {countdown}</p>
             <div className={classes.questionFlex}>
               <div className={classes.divLeft}>

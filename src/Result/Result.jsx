@@ -14,18 +14,55 @@ const Result = () => {
   const [currentCount, setCurrentCount] = useState(location.state.currentCount);
   const [score, setScore] = useState(location.state.score);
   const [selectedId, setSelectedId] = useState(location.state.selectedId);
+
+  const [multiplayer, setMultiplayer] = useState(location.state.multiplayer);
+  let scoreArray = location.state.scoreArray
+  const [playerArray, setPlayerArray] = useState(location.state.playerArray);
+  let playerIndex = location.state.playerIndex
   // console.log(quesArray);
   // console.log(quesCount);
   // console.log(currentCount);
   // console.log(score);
   // console.log(selectedId);
   const gotoNext = (s) => {
-    navigate("/question", {
-      state: { quesCount, quesArray, currentCount: currentCount + 1, score: s },
-    });
+      if (multiplayer == 0) {
+        navigate("/question", {
+          state: {
+            quesCount,
+            quesArray,
+            currentCount: currentCount + 1,
+            score: s,
+            multiplayer,
+          },
+        });
+      } else {
+        if (quesArray[currentCount].id == selectedId){
+          scoreArray[playerIndex] += 10;
+        }
+        playerIndex = (playerIndex+1)%multiplayer
+        navigate("/question", {
+          state: {
+            quesCount,
+            quesArray,
+            currentCount: currentCount + 1,
+            multiplayer,
+            scoreArray,
+            playerArray,
+            playerIndex,
+          },
+        });
+      }
   };
   const gotoFinish = (s) => {
-    navigate("/finish", { state: { score: s } });
+    if(multiplayer == 0) {
+      navigate("/finish", { state: { score: s,multiplayer } });
+    }
+    else {
+      if (quesArray[currentCount].id == selectedId){
+        scoreArray[playerIndex] += 10;
+      }
+      navigate("/finish", { state: { scoreArray,multiplayer } })
+    }
   };
 
   const correctFace = () => {
@@ -56,7 +93,7 @@ const Result = () => {
 
   const result = () => {
     if (
-      currentCount == quesCount - 1 &&
+      currentCount <= quesCount - 1 &&
       quesArray[currentCount].id == selectedId
     ) {
       return (
@@ -64,19 +101,38 @@ const Result = () => {
           {correctFace()}
           <br></br>
           <p className={classes.heading}>Correct!</p>
-          <p>You gained 10 points</p>
-          <p>Your score is {score + 10}</p>
-          <button
-            onClick={() => {
-              gotoFinish(score + 10);
-            }}
-          >
-            Next
-          </button>
+          {multiplayer == 0 ? (
+            <>
+              <p>You earned 10 points.</p>
+              <p>Your new score is {score + 10}.</p>
+            </>
+          ) : (
+            <>
+              <p>Great job, Player {playerIndex + 1}! You earned 10 points.</p>
+              <p>Your new score is {scoreArray[playerIndex] + 10}.</p>
+            </>
+          )}
+          {currentCount == quesCount - 1 ? (
+            <button
+              onClick={() => {
+                gotoFinish(score + 10);
+              }}
+            >
+              Next
+            </button>
+          ) : (
+            <button
+              onClick={() => {
+                gotoNext(score + 10);
+              }}
+            >
+              Next
+            </button>
+          )}
         </div>
       );
     } else if (
-      currentCount == quesCount - 1 &&
+      currentCount <= quesCount - 1 &&
       quesArray[currentCount].id != selectedId
     ) {
       return (
@@ -84,55 +140,34 @@ const Result = () => {
           {wrongFace()}
           <br></br>
           <p className={classes.heading}>Wrong!</p>
-          <p>You gained nothing</p>
-          <p>Your score is {score}</p>
-          <button
-            onClick={() => {
-              gotoFinish(score);
-            }}
-          >
-            Next
-          </button>
-        </div>
-      );
-    } else if (
-      currentCount < quesCount - 1 &&
-      quesArray[currentCount].id == selectedId
-    ) {
-      return (
-        <div className={classes.results}>
-          {correctFace()}
-          <br></br>
-          <p className={classes.heading}>Correct!</p>
-          <p>You gained 10 points</p>
-          <p>Your score is {score + 10}</p>
-          <button
-            onClick={() => {
-              gotoNext(score + 10);
-            }}
-          >
-            Next
-          </button>
-        </div>
-      );
-    } else if (
-      currentCount < quesCount - 1 &&
-      quesArray[currentCount].id != selectedId
-    ) {
-      return (
-        <div className={classes.results}>
-          {wrongFace()}
-          <br></br>
-          <p className={classes.heading}>Wrong!</p>
-          <p>You gained nothing</p>
-          <p>Your score is {score}</p>
-          <button
-            onClick={() => {
-              gotoNext(score);
-            }}
-          >
-            Next
-          </button>
+          {multiplayer == 0 ? (
+            <>
+              <p>No points gained this time.</p>
+              <p>Your current score remains {score}.</p>
+            </>
+          ) : (
+            <>
+              <p>No points gained this time, Player {playerIndex + 1}.</p>
+              <p>Your current score remains {scoreArray[playerIndex]}.</p>
+            </>
+          )}
+          {currentCount == quesCount - 1 ? (
+            <button
+              onClick={() => {
+                gotoFinish(score);
+              }}
+            >
+              Next
+            </button>
+          ) : (
+            <button
+              onClick={() => {
+                gotoNext(score);
+              }}
+            >
+              Next
+            </button>
+          )}
         </div>
       );
     }
