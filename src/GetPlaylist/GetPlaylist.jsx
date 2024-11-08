@@ -8,7 +8,7 @@ const GetPlaylist = (props) => {
   const [maxQuesCount,setMaxQuesCount] = useState();
   const [quesCount,setQuesCount] = useState()
   const navigate = useNavigate();
-  
+  const multiplayer = props.multiplayer;
   function generateRandomNumbers(arr_len) {
     let numbers = new Set();
     while (numbers.size < 4) {
@@ -65,7 +65,7 @@ const GetPlaylist = (props) => {
       
     }
     setQuesArray(question_array);
-    setMaxQuesCount(ques_count);
+    multiplayer == 0 ? setMaxQuesCount(ques_count) : setMaxQuesCount(Math.floor(ques_count / multiplayer))
     // console.log(question_array);
     // console.log(ques_count);
   };
@@ -84,9 +84,20 @@ const GetPlaylist = (props) => {
   
   return (
     <div>
-      <p>Enter the number of questions <br></br>(Maximum {maxQuesCount}): </p>
-      <br></br>
-      <input className={classes.numberArea} type="number" autoFocus onChange={(e)=> {setQuesCount(e.target.value)}}></input>
+      {
+        multiplayer == 0 ? 
+        <>
+          <p>Enter the number of questions <br></br>(Maximum {maxQuesCount}): </p>
+          <br></br>
+          <input className={classes.numberArea} type="number" autoFocus onChange={(e)=> {setQuesCount(e.target.value)}}></input>
+        </>
+        :
+        <>
+          <p>Enter the number of questions for each player <br></br>(Maximum {maxQuesCount}): </p>
+          <br></br>
+          <input className={classes.numberArea} type="number" autoFocus onChange={(e)=> {setQuesCount(e.target.value * multiplayer)}}></input>
+        </>
+      }
       <br></br><br></br>
       <input className={classes.startButton} type="button" value="Start" onClick={startGame}></input>
       {/* {quesArray &&

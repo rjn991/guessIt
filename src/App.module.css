@@ -11,7 +11,6 @@
     text-align: center;
 }
 .inputWrapper p {
-    width: 90vw;
     color: #E4AFFF;
 }
 .linkarea {
@@ -33,7 +32,37 @@
     font-size: 14px;
     color:#47026C
 }
-
+.playerSelection {
+    background-color: #F5CF05;
+    margin-bottom: 20px;
+    text-align: center;
+    color:#47026c;
+    padding: 20px 40px;
+    width:100%;
+    border: 0px;    
+    box-sizing: border-box;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 18px;
+    max-width: 400px;
+}
+.countSelection {
+    background-color: #F5CF05;
+    margin-bottom: 20px;
+    text-align: center;
+    color:#47026c;
+    padding: 20px 20px;
+    min-width: 70px;
+    min-height: 70px;
+    margin: 10px;
+    /* width:100%; */
+    border: 0px;    
+    box-sizing: border-box;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 18px;
+    max-width: 400px;
+}
 @media only screen and (max-width: 768px) { 
     .nextButton {
         margin-top: 20px;
