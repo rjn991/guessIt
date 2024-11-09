@@ -14,17 +14,23 @@ function App() {
   const [div2status, setDiv2Status] = useState(false);
   const [div3status, setDiv3Status] = useState(false);
   const [div4status, setDiv4Status] = useState(false);
-  const [multiplayer,setMultiplayer] = useState(0)
+  const [multiplayer, setMultiplayer] = useState(0);
+  const [modal, setModal] = useState(false);
   const getQueryParams = (url) => {
-    let params = {};
-    let parser = new URL(url);
-    let query = parser.search.substring(1);
-    let vars = query.split("&");
-    for (let i = 0; i < vars.length; i++) {
-      let pair = vars[i].split("=");
-      params[pair[0]] = decodeURIComponent(pair[1]);
+    try {
+      let params = {};
+      let parser = new URL(url);
+      let query = parser.search.substring(1);
+      let vars = query.split("&");
+      for (let i = 0; i < vars.length; i++) {
+        let pair = vars[i].split("=");
+        params[pair[0]] = decodeURIComponent(pair[1]);
+      }
+      return params;
+    } catch (error) {
+      console.error("Error parsing URL:", error);
+      return {};
     }
-    return params;
   };
 
   const fetch_vid = async () => {
@@ -38,15 +44,16 @@ function App() {
       setDiv1Status(false);
       setDiv2Status(true);
     } catch (err) {
+      setModal(true)
       console.log(err);
     }
   };
 
-  const multiPlayerRedirector=(a)=> {
-    setDiv4Status(false)
-    setMultiplayer(a)
-    setDiv3Status(true)
-  }
+  const multiPlayerRedirector = (a) => {
+    setDiv4Status(false);
+    setMultiplayer(a);
+    setDiv3Status(true);
+  };
 
   return (
     <div className={classes.appwrapper}>
@@ -101,7 +108,13 @@ function App() {
         )}
         {div3status &&
           (() => {
-            return <GetPlaylist data={data} item={item_array} multiplayer={multiplayer}></GetPlaylist>;
+            return (
+              <GetPlaylist
+                data={data}
+                item={item_array}
+                multiplayer={multiplayer}
+              ></GetPlaylist>
+            );
           })()}
 
         {div4status && (
@@ -136,7 +149,16 @@ function App() {
           </div>
         )}
       </div>
-
+      {modal && (
+        <div className={classes.modalWrapper}>
+          <div className={classes.innerModalWrapper}>
+            <p>Please enter a valid YouTube playlist URL and ensure the playlist is set to public or unlisted.</p>
+            <div className={classes.modalButtonWrapper}>
+              <button onClick={()=> {setModal(false)}}>Close</button>
+            </div>
+          </div>
+        </div>
+      )}
       <Footer></Footer>
     </div>
   );

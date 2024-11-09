@@ -3,12 +3,14 @@
     flex-direction: column;
     background-color: #47026C ;
     min-height: 100vh;
+    position: relative;
 }
 .inputWrapper {
     margin:auto;
     width: fit-content;
     /* background-color: aqua; */
     text-align: center;
+    max-width: 90vw;
 }
 .inputWrapper p {
     color: #E4AFFF;
@@ -63,10 +65,47 @@
     font-size: 18px;
     max-width: 400px;
 }
+.modalWrapper {
+    width: 100vw;
+    backdrop-filter: blur(5px);
+    min-height: 100vh;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.innerModalWrapper {
+    box-sizing: border-box;
+    max-width: 400px;
+    border-radius: 10px;
+    padding: 20px;
+    color: #E4AFFF;
+    border: 2px solid #E4AFFF;
+    background-color: #47026C;
+    width: fit-content;
+}
+.innerModalWrapper p {
+    margin-bottom: 20px;
+}
+.modalButtonWrapper {
+    text-align: right;
+}
+.modalButtonWrapper button {
+    padding: 6px 20px;
+    border-radius: 10px;
+    background-color: #F5CF05;
+    border: 0px;
+    font-size: 14px;
+    color:#47026C
+}
 @media only screen and (max-width: 768px) { 
     .nextButton {
         margin-top: 20px;
         font-size: 18px;
         padding: 10px 20px;
+    }
+    .innerModalWrapper {
+        max-width: 90vw;
     }
 }
