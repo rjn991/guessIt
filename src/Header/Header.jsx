@@ -50,6 +50,7 @@ const Header = () => {
             Home
           </NavLink>
           <NavLink
+            target="_blank"
             to="https://github.com/rjn991/guessIt"
             className={({ isActive, isPending }) =>
               isPending ? "pending" : isActive ? "active" : ""
@@ -84,6 +85,7 @@ const Header = () => {
             </p>
             <p>
               <NavLink
+                target="_blank"
                 to="https://github.com/rjn991/guessIt"
                 className={({ isActive, isPending }) =>
                   isPending ? "pending" : isActive ? "active" : ""
